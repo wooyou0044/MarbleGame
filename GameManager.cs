@@ -51,7 +51,7 @@ namespace PracticeGame
             _player.setPlayerShape((MarbleShape)shapeIndex);
 
             colorIndex = rand.Next(0, (int)MarbleColor.None);
-            _table.SetTable(tableArr, _player.PlayerShape, currentStage, _player.Score);
+            _table.SetTable(tableArr, currentStage, _player.Score, marbleArr);
             _player.SetPlayerMarble((MarbleShape)shapeIndex, (MarbleColor)colorIndex);
 
             // 맨 처음 플레이어 위치 설정
@@ -62,6 +62,14 @@ namespace PracticeGame
             // 레벨에 따른 제약 조건
             _table.setAccordLevel(currentStage);
 
+            for(int i=0; i<marbleArr.GetLength(0); i++)
+            {
+                for(int j=0; j<marbleArr.GetLength(1); j++)
+                {
+                    marbleArr[i, j] = new Marble();
+                }
+            }
+
             while (true)
             {
                 // 플레이어가 져서 다음 스테이지로 못 가고 다시 시작
@@ -70,7 +78,7 @@ namespace PracticeGame
                     _player.Score = 0;
                     turnNum = 0;
                     Console.Clear();
-                    _table.SetTable(tableArr, _player.PlayerShape, currentStage, _player.Score);
+                    _table.SetTable(tableArr, currentStage, _player.Score, marbleArr);
                 }
 
                 // 플레이어가 이겨서 다음 스테이지로 간다면
@@ -84,7 +92,7 @@ namespace PracticeGame
                     //Console.SetCursorPosition(width + 5, height - 2);
                     //Console.WriteLine($"\t\t\t{currentStage}");
                     Console.Clear();
-                    _table.SetTable(tableArr, _player.PlayerShape, currentStage, _player.Score);
+                    _table.SetTable(tableArr, currentStage, _player.Score, marbleArr);
                 }
 
                 // 입력한 키에 대해 게임에 출력하는 함수 
@@ -169,7 +177,16 @@ namespace PracticeGame
                             tableArr[i, j] = _player.PlayerShape;
                             marbleArr[i, j] = new Marble(_player.PlayerMarble.Shape, _player.PlayerMarble.Color);
                         }
-                        Console.Write(tableArr[i, j]);
+                        if (tableArr[i,j] != block && tableArr[i,j] != space)
+                        {
+                            PrintShapeColor(marbleArr[i,j].Color);
+                            Console.Write(_player.setPlayerShape(marbleArr[i, j].Shape));
+                            Console.ResetColor();
+                        }
+                        else
+                        {
+                            Console.Write(tableArr[i, j]);
+                        }
                         // 스테이지, 플레이어 스코어 출력
                         if (i == _table.Height - 2 && j == _table.Width - 1)
                         {

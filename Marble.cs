@@ -22,6 +22,13 @@ namespace PracticeGame
         None
     }
 
+    enum Type
+    {
+        Marble,
+        Block,
+        Space
+    }
+
     struct Vector2
     {
         public int posX;
@@ -37,6 +44,7 @@ namespace PracticeGame
     {
         MarbleShape _shape;
         MarbleColor _color;
+        Type _type;
         Vector2 _location;
 
         public MarbleShape Shape
@@ -75,11 +83,28 @@ namespace PracticeGame
             }
         }
 
+        public Type ShapeType
+        {
+            get
+            {
+                return _type;
+            }
+            set
+            {
+                _type = value;
+            }
+        }
+
         public Marble()
         {
             // 기본으로 세팅
-            _shape = MarbleShape.Circle;
-            _color = MarbleColor.Red;
+            _shape = MarbleShape.None;
+            _color = MarbleColor.None;
+        }
+
+        public Marble(Type type)
+        {
+            _type = type;
         }
 
         public Marble(MarbleShape shape, MarbleColor color)
