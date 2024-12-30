@@ -14,19 +14,12 @@ namespace PracticeGame
     enum MarbleShape
     {
         Circle,
-        Star,   
+        Star,
         Diamond,
         Spade,
         Heart,
         Clover,
         None
-    }
-
-    enum Type
-    {
-        Marble,
-        Block,
-        Space
     }
 
     struct Vector2
@@ -44,8 +37,8 @@ namespace PracticeGame
     {
         MarbleShape _shape;
         MarbleColor _color;
-        Type _type;
         Vector2 _location;
+        int _score;
 
         public MarbleShape Shape
         {
@@ -83,15 +76,15 @@ namespace PracticeGame
             }
         }
 
-        public Type ShapeType
+        public int Score
         {
             get
             {
-                return _type;
+                return _score;
             }
             set
             {
-                _type = value;
+                _score = value;
             }
         }
 
@@ -100,11 +93,6 @@ namespace PracticeGame
             // 기본으로 세팅
             _shape = MarbleShape.None;
             _color = MarbleColor.None;
-        }
-
-        public Marble(Type type)
-        {
-            _type = type;
         }
 
         public Marble(MarbleShape shape, MarbleColor color)
@@ -118,6 +106,65 @@ namespace PracticeGame
             _shape = shape;
             _color = color;
             _location = location;
+        }
+
+        public int GetMarbleScore(MarbleColor color, MarbleShape shape)
+        {
+            int colorScore = 0;
+            int shapeScore = 0;
+
+            switch (color)
+            {
+                case MarbleColor.Red:
+                    colorScore = 1;
+                    break;
+                case MarbleColor.Yellow:
+                    colorScore = 3;
+                    break;
+                case MarbleColor.Cyan:
+                    colorScore = 2;
+                    break;
+                case MarbleColor.DarkGreen:
+                    colorScore = 1;
+                    break;
+            }
+
+            switch (shape)
+            {
+                case MarbleShape.Circle:
+                    shapeScore = 1;
+                    break;
+                case MarbleShape.Star:
+                    shapeScore = 5;
+                    break;
+                case MarbleShape.Diamond:
+                    shapeScore = 2;
+                    break;
+                case MarbleShape.Spade:
+                    shapeScore = 3;
+                    break;
+                case MarbleShape.Heart:
+                    shapeScore = 3;
+                    break;
+                case MarbleShape.Clover:
+                    shapeScore = 2;
+                    break;
+            }
+
+            Score = shapeScore + colorScore;
+
+            if (shape == MarbleShape.Star && color == MarbleColor.Yellow)
+            {
+                Score = 10;
+            }
+
+            return Score;
+        }
+
+        public void ChangePosition(Vector2 pos)
+        {
+            _location.posX = pos.posX;
+            _location.posY = pos.posY;
         }
     }
 }

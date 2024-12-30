@@ -6,32 +6,19 @@ namespace PracticeGame
     class Player
     {
         int _score;
-        int _currentStage;
         string _player;
         Marble _playerMarble;
 
         public int Score
         {
-            get 
-            { 
-                return _score; 
-            }
-            set 
-            {
-                _score = value; 
-            }
-        }
-
-        public int CurrentStage
-        {
             get
             {
-                return _currentStage;
+                return _score;
             }
             set
-            {  
-                _currentStage = value; 
-            } 
+            {
+                _score = value;
+            }
         }
 
         public string PlayerShape
@@ -63,35 +50,30 @@ namespace PracticeGame
             _playerMarble = new Marble();
         }
 
-        public string setPlayerShape(MarbleShape shape)
+        public string SetPlayerShape(MarbleShape shape)
         {
             switch (shape)
             {
                 case MarbleShape.Circle:
-                    PlayerShape = "●";
-                    break;
+                    return "●";
                 case MarbleShape.Star:
-                    PlayerShape = "★";
-                    break;
+                    return "★";
                 case MarbleShape.Diamond:
-                    PlayerShape = "◆";
-                    break;
+                    return "◆";
                 case MarbleShape.Spade:
-                    PlayerShape = "♠";
-                    break;
+                    return "♠";
                 case MarbleShape.Heart:
-                    PlayerShape = "♥";
-                    break;
+                    return "♥";
                 case MarbleShape.Clover:
-                    PlayerShape = "♣";
-                    break;
+                    return "♣";
             }
-            return PlayerShape;
+            return string.Empty;
         }
 
         public void SetPlayerMarble(MarbleShape shape, MarbleColor color)
         {
             PlayerMarble.Shape = shape;
+            PlayerShape = SetPlayerShape(shape);
             PlayerMarble.Color = color;
         }
     }
