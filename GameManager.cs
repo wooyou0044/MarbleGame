@@ -73,7 +73,6 @@ namespace PracticeGame
                     _player.Score = 0;
                     turnNum = 0;
                     _table.TurnEndBlock = 0;
-                    _table.MaxHeightIndex = _table.SetMarbleNum;
                     Console.Clear();
                     SettingStartMarble(tableArr, marbleArr, currentStage);
                 }
@@ -90,8 +89,6 @@ namespace PracticeGame
                     Console.SetCursorPosition(_table.Width + 9, _table.Height - 3);
                     Console.WriteLine($"\t\t\t{currentStage}");
                     Console.Clear();
-                    _table.MaxHeightIndex = _table.SetMarbleNum;
-
                     SettingStartMarble(tableArr, marbleArr, currentStage);
                 }
 
@@ -668,10 +665,11 @@ namespace PracticeGame
 
             _table.setAccordLevel(currentStage);
 
-            for (int i = 0; i < marbleArr.GetLength(0); i++)
+            for (int i = 0; i < tableArr.GetLength(0); i++)
             {
-                for (int j = 0; j < marbleArr.GetLength(1); j++)
+                for (int j = 0; j < tableArr.GetLength(1); j++)
                 {
+                    tableArr[i, j] = string.Empty;
                     marbleArr[i, j] = new Marble();
                 }
             }

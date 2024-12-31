@@ -79,7 +79,7 @@ namespace PracticeGame
             {
                 case 1:
                     _turnMaxNum = 10;
-                    _stageUpScore = 100;
+                    _stageUpScore = 20;
                     _setMarbleNum = 5;
                     break;
                 case 2:
@@ -93,20 +93,6 @@ namespace PracticeGame
                     _setMarbleNum = 8;
                     break;
             }
-        }
-
-        public int SetStageNum(int stage)
-        {
-            switch (stage)
-            {
-                case 1:
-                    return 100;
-                case 2:
-                    return 120;
-                case 3:
-                    return 150;
-            }
-            return 0;
         }
 
         public void SetTable(string[,] gameArr, int stage, int score, Marble[,] marbles)
@@ -285,7 +271,7 @@ namespace PracticeGame
                     // 도달까지 필요한 점수 출력
                     if (i == gameArr.GetLength(0) - 6 && j == gameArr.GetLength(1) - 1)
                     {
-                        Console.Write($"\t▶　{stage}단계 통과 시 필요한 score : {SetStageNum(stage)}");
+                        Console.Write($"\t▶　{stage}단계 통과 시 필요한 score : {StageUpScore}");
                     }
                 }
                 Console.WriteLine();
