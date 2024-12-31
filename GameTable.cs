@@ -79,7 +79,7 @@ namespace PracticeGame
             {
                 case 1:
                     _turnMaxNum = 10;
-                    _stageUpScore = 20;
+                    _stageUpScore = 100;
                     _setMarbleNum = 5;
                     break;
                 case 2:

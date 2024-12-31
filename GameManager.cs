@@ -75,6 +75,7 @@ namespace PracticeGame
                     _table.TurnEndBlock = 0;
                     Console.Clear();
                     SettingStartMarble(tableArr, marbleArr, currentStage);
+                    _table.IsFinish = false;
                 }
 
                 // 플레이어가 이겨서 다음 스테이지로 간다면
@@ -90,6 +91,7 @@ namespace PracticeGame
                     Console.WriteLine($"\t\t\t{currentStage}");
                     Console.Clear();
                     SettingStartMarble(tableArr, marbleArr, currentStage);
+                    _table.IsStageUp = false;
                 }
 
                 // 입력한 키에 대해 게임에 출력하는 함수 
